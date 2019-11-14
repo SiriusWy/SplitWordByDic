@@ -1,3 +1,5 @@
+package Trie;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +46,7 @@ public class TrieTree2 {
         }
         return false;
     }
-    
+
     private static class Node {
         boolean isEnd = false;
         Map<Character, Node> content = new HashMap<>();
