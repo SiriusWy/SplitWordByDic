@@ -16,14 +16,16 @@ public class WordSplitFMM {
 
     public static List<String> dicSplit(String sentence) {
         int lenght = sentence.length();
-        int startindex = 0;
 
         String matchedWord = "";
         boolean isMatched = false;
         for (int i = 1; i <= lenght; i++) {
-            String tempWord = sentence.substring(startindex, startindex + i);
+            // 切分单词，开始匹配
+            String tempWord = sentence.substring(0, i);
             if (dicSet.contains(tempWord)) {
                 isMatched = true;
+
+                // 比较长度，目的就是最长匹配
                 if (tempWord.length() > matchedWord.length()) {
                     matchedWord = tempWord;
                 }
@@ -32,7 +34,9 @@ public class WordSplitFMM {
                 }
             } else if (isMatched) {
                 splitedList.add(matchedWord);
-                dicSplit(sentence.replace(matchedWord, ""));
+                // 这么写不就把相同的词替换了吗
+//                dicSplit(sentence.replace(matchedWord, ""));
+                dicSplit(sentence.substring(matchedWord.length()));
                 break;
             }
         }
@@ -41,7 +45,9 @@ public class WordSplitFMM {
 
     public static void main(String[] args) {
         WordSplitFMM ins = new WordSplitFMM();
-        List<String> result = ins.dicSplit("哈利波特是我最喜欢的书");
+
+
+        List<String> result = ins.dicSplit("哈利波特是我最喜欢的书我正在上班今天周四阳光非常好而我却在办公室写代码");
         for (String word : result) {
             System.out.print(word + " ");
         }

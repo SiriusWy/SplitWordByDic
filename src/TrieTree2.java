@@ -34,8 +34,7 @@ public class TrieTree2 {
             char c = word.charAt(i);
 
             if (node_all_temp.content.containsKey(c)) {
-                // 如果输入词语结束，必须isEnd
-                if ( node_all_temp.content.get(c).isEnd) {
+                if (node_all_temp.content.get(c).isEnd) {
                     return true;
                 }
 
@@ -45,8 +44,7 @@ public class TrieTree2 {
         }
         return false;
     }
-
-
+    
     private static class Node {
         boolean isEnd = false;
         Map<Character, Node> content = new HashMap<>();
